@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,14 @@ Route::get('/about', function () {
 });
 
 
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{id}', [PostController::class, 'show']);
+Route::get('/posts', [PostController::class, 'index'])->middleware('auth');
+Route::get('/posts/{id}', [PostController::class, 'show'])->middleware('auth');
 
 Route::post('/createpost', [PostController::class, 'store']);
 Route::post('/createcomment', [CommentController::class, 'store']);
+
+Route::get('signup', [AuthController::class, 'getSignUp']);
+Route::get('signin', [AuthController::class, 'getSignIn']);
+Route::get('signout', [AuthController::class, 'signout']);
+Route::post('/signup', [AuthController::class, 'signUp']);
+Route::post('/signin', [AuthController::class, 'signin']);
