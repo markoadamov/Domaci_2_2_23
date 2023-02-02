@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Authenticate
+class AdminAuth
 {
     /**
      * Handle an incoming request.
@@ -17,12 +17,11 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check())
+        if (!Auth::user()->isAdmin)
         {
-            return response('You are not logged in', 401);
+            return response('Only Admin can access this page', 401);
         }
 
         return $next($request);
     }
-
 }

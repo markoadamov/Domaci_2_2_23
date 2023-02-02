@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,6 +17,12 @@ class CommentController extends Controller
         //
     }
 
+    public function showUsersTable()
+    {
+        $users = User::all();
+
+        return view('user-dashboard',compact('users'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -27,24 +31,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'body' => 'required|min:5|max:2000|string',
-            'post_id' => 'required|exists:posts,id'
-        ]);
-
-        $comment = new Comment();
-        $comment->body = $request->body;
-        $comment->user_id = $request->user_id;
-        
-        $post = Post::find($request->post_id);
-        $comment->post()->associate($post)->save();
-
-        $user = User::find($request->user_id);       // Ove dve linije mogu ovako da se skrate:
-        $comment->user()->associate($user)->save();  // $comment->user_id = Auth::user()->id;
-
-        $comment->save();
-
-        return redirect('posts/' . $request->post_id)->with('status', 'Comment successfully posted');
+        //
     }
 
     /**
@@ -55,7 +42,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**

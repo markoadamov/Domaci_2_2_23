@@ -5,6 +5,9 @@
       <li class="nav-item"><a href="/posts" class="nav-link link-dark px-2">Posts</a></li>
       <li class="nav-item"><a href="/about" class="nav-link link-dark px-2">About</a></li>
       <li class="nav-item"><a href="/createpost" class="nav-link link-dark px-2">Create Post</a></li>
+      <li class="nav-item"><a href="/profile" class="nav-link link-dark px-2">Profile</a></li>
+      <li class="nav-item"><a href="/post-dashboard" class="nav-link link-dark px-2">Post Dashboard</a></li>
+      <li class="nav-item"><a href="/user-dashboard" class="nav-link link-dark px-2">User Dashboard</a></li>
     </ul>
     <ul class="nav">
       <li class="nav-item"><a href="/signin" class="nav-link link-dark px-2">Sign in</a></li>

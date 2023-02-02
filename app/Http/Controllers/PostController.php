@@ -21,6 +21,17 @@ class PostController extends Controller
         return view('posts', compact('posts'));
     }
 
+    public function showPostsTable()
+    {
+        $posts = Post::all();
+        return view('post-dashboard', compact('posts'));
+    }
+
+    public function deletePost(Request $request)
+    {
+        Post::where('id', $request->post_id)->delete();
+        return redirect('/post-dashboard')->with('status', 'Post successfully deleted');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -29,17 +40,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|min:2|max:100|string',
-            'body' => 'required|min:10|max:2000|string'
-        ]);
+            $request->validate([
+                'title' => 'required|min:2|max:100|string',
+                'body' => 'required|min:10|max:2000|string'
+            ]);
 
-        $post = new Post();
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->save();
+            $post = new Post();
+            $post->title = $request->title;
+            $post->body = $request->body;
+            $post->user_id = $request->user_id;
+            $post->save();
 
-        return redirect('createpost')->with('status', 'Post successfully created');
+            return redirect('createpost')->with('status', 'Post successfully created');
     }
 
     /**

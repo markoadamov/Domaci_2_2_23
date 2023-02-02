@@ -11,6 +11,7 @@
     <div class="mb-3">
       <textarea class="form-control" id="body" name="body" placeholder="Body" required></textarea>
     </div>
+    <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
     <button type="submit" class="btn btn-primary">Create post</button>
 </form>
 

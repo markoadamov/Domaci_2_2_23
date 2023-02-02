@@ -7,6 +7,7 @@
     <div class="col-sm-8 py-5 mx-auto">
       <h1 class="display-5 fw-normal">{{ $post->title }}</h1>
       <p class="fs-5">{{ $post->body }}</p>
+      <h4 class="display-5 fw-normal">Autor posta: {{ $post->user->name }}</h4>
   </div>
   </div>
 </div>
@@ -17,6 +18,7 @@
     <label for="body" class="label mb-2">Enter your comment</label>
     <textarea rows="4" class="form-control" id="body" name="body" placeholder="Add comment" required></textarea>
     <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
+    <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
   </div>
   <button type="submit" class="btn btn-primary">Post Comment</button>
 </form>
